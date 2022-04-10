@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoSort", "VideoSort\VideoSort.csproj", "{2A8EC97E-BB8B-44B2-AB0F-5C03B4029441}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A8EC97E-BB8B-44B2-AB0F-5C03B4029441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8EC97E-BB8B-44B2-AB0F-5C03B4029441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8EC97E-BB8B-44B2-AB0F-5C03B4029441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8EC97E-BB8B-44B2-AB0F-5C03B4029441}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {328BC2CD-0B56-4562-89CB-B9B457708A44}
+	EndGlobalSection
+EndGlobal
