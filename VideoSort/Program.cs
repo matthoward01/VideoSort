@@ -18,11 +18,14 @@ namespace VideoSort
             Console.WriteLine("Copy Where?");
             string outDir = Console.ReadLine();
             Console.WriteLine("----------------------------------------------------------");
+            Console.WriteLine("Keep Folder Name? (y / n)");
+            string keepFolder = Console.ReadLine();
+            Console.WriteLine("----------------------------------------------------------");
             FolderCreation(outDir);
             string[] files = Directory.GetFiles(inDir, "*", SearchOption.AllDirectories);            
             foreach (string f in files)
             {
-                VideoInfo(f, outDir, errorList);
+                VideoInfo(f, outDir, errorList, keepFolder);
             }
             foreach (string e in errorList)
             {
@@ -44,7 +47,7 @@ namespace VideoSort
             catch (Exception) { }
         }
 
-        public static void SortVideos(VideoModel vm, string outDir)
+        public static void SortVideos(VideoModel vm, string outDir, string keepFolder)
         {            
             if(vm.Width > vm.Height)
             {
@@ -52,7 +55,15 @@ namespace VideoSort
                 {
                     try
                     {
-                        File.Copy(vm.FilePath, Path.Combine(outDir, "848x480", Path.GetFileName(vm.FilePath)), true);
+                        if (keepFolder == "y" || keepFolder == "yes")
+                        {
+                            Directory.CreateDirectory(Path.Combine(outDir, "848x480", Directory.GetParent(vm.FilePath).Name));
+                            File.Copy(vm.FilePath, Path.Combine(outDir, "848x480", Directory.GetParent(vm.FilePath).Name, Path.GetFileName(vm.FilePath)), true);
+                        }
+                        else
+                        {
+                            File.Copy(vm.FilePath, Path.Combine(outDir, "848x480", Path.GetFileName(vm.FilePath)), true);
+                        }
                         Console.WriteLine("Sent to 848x480...");
                         Console.WriteLine("----------------------------------------------------------");
                     }
@@ -62,7 +73,15 @@ namespace VideoSort
                 {
                     try
                     {
-                        File.Copy(vm.FilePath, Path.Combine(outDir, "1920x1080",Path.GetFileName(vm.FilePath)), true);
+                        if (keepFolder == "y" || keepFolder == "yes")
+                        {
+                            Directory.CreateDirectory(Path.Combine(outDir, "1920x1080", Directory.GetParent(vm.FilePath).Name));
+                            File.Copy(vm.FilePath, Path.Combine(outDir, "1920x1080", Directory.GetParent(vm.FilePath).Name, Path.GetFileName(vm.FilePath)), true);                           
+                        }
+                        else
+                        {
+                            File.Copy(vm.FilePath, Path.Combine(outDir, "1920x1080", Path.GetFileName(vm.FilePath)), true);
+                        }
                         Console.WriteLine("Sent to 1920x1080...");
                         Console.WriteLine("----------------------------------------------------------");
                     }
@@ -75,7 +94,15 @@ namespace VideoSort
                 {
                     try
                     {
-                        File.Copy(vm.FilePath, Path.Combine(outDir, "480x848",Path.GetFileName(vm.FilePath)), true);
+                        if (keepFolder == "y" || keepFolder == "yes")
+                        {
+                            Directory.CreateDirectory(Path.Combine(outDir, "480x848", Directory.GetParent(vm.FilePath).Name));
+                            File.Copy(vm.FilePath, Path.Combine(outDir, "480x848", Directory.GetParent(vm.FilePath).Name, Path.GetFileName(vm.FilePath)), true);
+                        }
+                        else
+                        {
+                            File.Copy(vm.FilePath, Path.Combine(outDir, "480x848", Path.GetFileName(vm.FilePath)), true);
+                        }
                         Console.WriteLine("Sent to 480x848...");
                         Console.WriteLine("----------------------------------------------------------");
                     }
@@ -85,7 +112,15 @@ namespace VideoSort
                 {
                     try
                     {
-                        File.Copy(vm.FilePath, Path.Combine(outDir, "1080x1920",Path.GetFileName(vm.FilePath)), true);
+                        if (keepFolder == "y" || keepFolder == "yes")
+                        {
+                            Directory.CreateDirectory(Path.Combine(outDir, "1080x1920", Directory.GetParent(vm.FilePath).Name));
+                            File.Copy(vm.FilePath, Path.Combine(outDir, "1080x1920", Directory.GetParent(vm.FilePath).Name, Path.GetFileName(vm.FilePath)), true);
+                        }
+                        else
+                        {
+                            File.Copy(vm.FilePath, Path.Combine(outDir, "1080x1920", Path.GetFileName(vm.FilePath)), true);
+                        }
                         Console.WriteLine("Sent to 1080x1920...");
                         Console.WriteLine("----------------------------------------------------------");
                     }
@@ -94,7 +129,7 @@ namespace VideoSort
             }
         }
 
-        public static void VideoInfo(string fileName, string outDir, List<string> errorList)
+        public static void VideoInfo(string fileName, string outDir, List<string> errorList, string keepFolder)
         {
             try
             {
@@ -113,7 +148,7 @@ namespace VideoSort
                 Console.WriteLine(videoModel.Width);
                 Console.WriteLine(videoModel.Height);
 
-                SortVideos(videoModel, outDir);
+                SortVideos(videoModel, outDir, keepFolder);
             }
             catch(Exception)
             {
